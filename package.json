@@ -1,0 +1,100 @@
+{
+  "name": "foursquare",
+  "version": "1.0.0",
+  "description": "This web app shows a list of places around user based on her/his location",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.prod.js -p",
+    "eslint": "./node_modules/eslint/bin/eslint.js src/**/*.{js,jsx}",
+    "flow": "flow",
+    "flow-report": "flow-coverage-report -i 'src/**/*.js' -i 'src/**/*.jsx' -x 'src/test/**'",
+    "flow-typed": "flow-typed install",
+    "lint-staged": "lint-staged",
+    "prettier": "prettier --write '{*.{js,jsx},!(node*|dist*)**/**/*.{js,jsx}}'",
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "test": "jest",
+    "todo": "rm -f TODO.md; (./node_modules/leasot/bin/leasot.js '*.{js,jsx}' 'src/**/*.{js,jsx}' '__tests__/**/*.{js,jsx}' -r markdown > TODO.md || true);",
+    "precommit": "npm run lint-staged -q && npm run flow -q && (npm run todo && git add TODO.md)",
+    "prepush": "npm test",
+    "preinstall": "echo 'Removing old hooks!' && rm -f .git/hooks/pre-commit && rm -f .git/hooks/pre-push",
+    "postinstall": "echo 'Installing the new hooks!' && node node_modules/husky/bin/install"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier",
+      "eslint",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/komlew/foursquare.git"
+  },
+  "keywords": [
+    "foursquare",
+    "api",
+    "google",
+    "maps",
+    "location",
+    "gps",
+    "geo"
+  ],
+  "author": "Alex Komlev",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/komlew/foursquare/issues"
+  },
+  "homepage": "https://github.com/komlew/foursquare#readme",
+  "dependencies": {
+    "autobind-decorator": "2.1.0",
+    "babel-polyfill": "6.26.0",
+    "lodash": "4.17.4",
+    "react": "16.1.0",
+    "react-dom": "16.1.0",
+    "react-redux": "5.0.6",
+    "react-router-dom": "4.2.2",
+    "redux": "3.7.2"
+  },
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.0",
+    "babel-eslint": "8.0.2",
+    "babel-jest": "21.2.0",
+    "babel-loader": "7.1.2",
+    "babel-plugin-lodash": "3.2.11",
+    "babel-plugin-transform-decorators-legacy": "1.3.4",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
+    "babel-preset-env": "1.6.0",
+    "babel-preset-react": "6.24.1",
+    "clean-webpack-plugin": "0.1.17",
+    "copy-webpack-plugin": "4.2.1",
+    "eslint": "4.10.0",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-config-prettier": "2.7.0",
+    "eslint-plugin-flowtype": "2.39.1",
+    "eslint-plugin-import": "2.8.0",
+    "eslint-plugin-jsx-a11y": "6.0.2",
+    "eslint-plugin-prettier": "2.3.1",
+    "eslint-plugin-react": "7.4.0",
+    "flow-bin": "0.59.0",
+    "flow-coverage-report": "0.4.0",
+    "flow-typed": "2.2.3",
+    "html-webpack-plugin": "2.30.1",
+    "husky": "0.14.3",
+    "jest": "21.2.1",
+    "leasot": "4.10.2",
+    "lint-staged": "4.3.0",
+    "prettier": "1.8.2",
+    "progress-bar-webpack-plugin": "1.10.0",
+    "redux-logger": "3.0.6",
+    "webpack": "3.8.1",
+    "webpack-dev-middleware": "1.12.0",
+    "webpack-dev-server": "2.9.4",
+    "webpack-hot-middleware": "2.20.0",
+    "webpack-merge": "4.1.1"
+  }
+}

@@ -1,0 +1,20 @@
+[include]
+
+[ignore]
+.*/__tests__/.*
+.*/__testsUI__/.*
+.*/dist/.*
+.*/flow-typed/.*
+.*/node_modules/.*
+.*/styles/.*
+
+[libs]
+
+[lints]
+
+[options]
+module.system.node.resolve_dirname=node_modules
+module.system.node.resolve_dirname=src
+module.ignore_non_literal_requires=true
+esproposal.decorators=ignore
+suppress_comment= \\(.\\|\n\\)*\\flow-disable-next-line

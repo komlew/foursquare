@@ -1,0 +1,102 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/flowtype",
+    "prettier/react"
+  ],
+  "plugins": [
+    "flowtype",
+    "prettier"
+  ],
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true,
+    "jest": true
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    },
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    }
+  },
+  "rules" : {
+    "prettier/prettier": "error",
+
+    // import/no-duplicates already does this.
+    "no-duplicate-imports": 0,
+
+    "react/prop-types": 0,
+    "react/forbid-prop-types": 1,
+    "react/require-default-props": "off",
+
+    // warn when using bind() or arrow functions in JSX props
+    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
+    "react/jsx-no-bind": ["warn", {
+      "ignoreRefs": true,
+      "allowArrowFunctions": false,
+      "allowBind": false
+    }],
+
+    // Forbid the use of dev packages
+    // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-extraneous-dependencies.md
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": ["!**/*.test.js", "!**/*.spec.js"]
+    }],
+    "import/named": 1,
+    "import/namespace": 1,
+    "import/default": 1,
+    "import/export": 1,
+    "import/imports-first": 1,
+    "import/no-duplicates": 1,
+    "import/prefer-default-export": 1,
+    "import/order": [
+      "error", {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "newlines-between": "always"
+      }
+    ],
+    "import/no-unresolved": 1,
+
+    // enforce braces in arrow function bodies
+    // http://eslint.org/docs/rules/arrow-body-style
+    "arrow-body-style": ["warn", "as-needed"],
+    "no-mixed-operators": [
+      "error", {
+        "allowSamePrecedence": true
+      }
+    ],
+
+    "no-debugger": ["warn"],
+    "global-require": 0,
+    "no-param-reassign": [2, { 
+      "props": false
+    }],
+
+    // prevent jsx-a11y error for Link router component without href param
+    // https://github.com/ReactTraining/react-router/issues/5598
+    "jsx-a11y/anchor-is-valid": [ "error", {
+      "components": [ "Link" ],
+      "specialLink": [ "to" ]
+    }],
+
+    /* FLOWTYPE RULES */
+    "flowtype/define-flow-type": 1,
+    "flowtype/use-flow-type": 1,
+    "flowtype/valid-syntax": 1
+  },
+  "globals" : {
+    "window": true
+  }
+}
