@@ -17,9 +17,10 @@ module.exports = merge(common, {
       inject: false,
       template: require('html-webpack-template'),
       appMountId: 'root',
-      appMountHtmlSnippet: '<div class="loading">Loading...</div>',
+      appMountHtmlSnippet:
+        '<div style="line-height:100vh;text-align:center;font-size:1.5rem;color:#ccc">Loading...</div>',
       headHtmlSnippet:
-        '<style>body {margin:0; font:18px/1.2 Helvetica; background:#f7f8f9;} .loading{line-height: 100vh; text-align:center; font-size:1.5rem; color:#ccc}</style>',
+        '<style>body{margin:0;font:18px/1.2 Helvetica, Arial, sans-serif;background:#f7f8f9}</style>',
       devServer: 'http://localhost:3000',
       lang: 'en-US',
       title: 'Foursquare App',

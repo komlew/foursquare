@@ -1,8 +1,6 @@
 // @flow
 import styled from 'styled-components';
 
-/* (styled: Object); */
-
 // Overview containters
 export const MainContainer = styled.section`
   height: 100vh;

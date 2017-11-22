@@ -1,8 +1,6 @@
 // @flow
 import styled from 'styled-components';
 
-/* (styled: Object); */
-
 // List Section Venue Cards
 export const Block = styled.button`
   display: block;

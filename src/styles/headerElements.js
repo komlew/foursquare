@@ -1,8 +1,6 @@
 // @flow
 import styled from 'styled-components';
 
-/* (styled: Object); */
-
 // Header Simple Elements
 export const Header1 = styled.h1`
   font-size: 1.5rem;
