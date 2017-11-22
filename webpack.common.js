@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    pod: './src/index.jsx',
+    app: './src/index.jsx',
   },
   resolve: {
     modules: ['node_modules'],

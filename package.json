@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js -p",
-    "eslint": "./node_modules/eslint/bin/eslint.js src/**/*.{js,jsx}",
+    "eslint": "./node_modules/eslint/bin/eslint.js src/**/*.{js,jsx} --fix",
     "flow": "flow",
     "flow-report": "flow-coverage-report -i 'src/**/*.js' -i 'src/**/*.jsx' -x 'src/test/**'",
     "flow-typed": "flow-typed install",
     "lint-staged": "lint-staged",
-    "prettier": "prettier --write '{*.{js,jsx},!(node*|dist*)**/**/*.{js,jsx}}'",
+    "prettier": "prettier --write '{*.{js,jsx},!(node*|dist*|flow-typed*)**/**/*.{js,jsx}}'",
     "start": "webpack-dev-server --config webpack.dev.js",
     "test": "jest",
     "todo": "rm -f TODO.md; (./node_modules/leasot/bin/leasot.js '*.{js,jsx}' 'src/**/*.{js,jsx}' '__tests__/**/*.{js,jsx}' -r markdown > TODO.md || true);",
@@ -48,16 +48,19 @@
   "bugs": {
     "url": "https://github.com/komlew/foursquare/issues"
   },
-  "homepage": "https://github.com/komlew/foursquare#readme",
+  "homepage": "https://komlew.github.io/foursquare/",
   "dependencies": {
     "autobind-decorator": "2.1.0",
     "babel-polyfill": "6.26.0",
     "lodash": "4.17.4",
     "react": "16.1.0",
     "react-dom": "16.1.0",
+    "react-google-maps": "9.2.2",
     "react-redux": "5.0.6",
     "react-router-dom": "4.2.2",
-    "redux": "3.7.2"
+    "redux": "3.7.2",
+    "redux-saga": "0.16.0",
+    "styled-components": "2.2.3"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
@@ -71,7 +74,6 @@
     "babel-preset-env": "1.6.0",
     "babel-preset-react": "6.24.1",
     "clean-webpack-plugin": "0.1.17",
-    "copy-webpack-plugin": "4.2.1",
     "eslint": "4.10.0",
     "eslint-config-airbnb": "16.1.0",
     "eslint-config-prettier": "2.7.0",
@@ -84,6 +86,7 @@
     "flow-coverage-report": "0.4.0",
     "flow-typed": "2.2.3",
     "html-webpack-plugin": "2.30.1",
+    "html-webpack-template": "6.1.0",
     "husky": "0.14.3",
     "jest": "21.2.1",
     "leasot": "4.10.2",

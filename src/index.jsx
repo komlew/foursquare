@@ -4,34 +4,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { HashRouter, Switch, Route } from 'react-router-dom';
-import { createStore, applyMiddleware } from 'redux';
-import type { Middleware } from 'redux';
 
-import allReducers from './reducers';
+import createStore from './helpers/store';
+import Overview from './containers/Overview';
 
-type MiddlewareFn = Middleware<*, *>;
+const store = createStore();
+const rootAppNode = document.getElementById('root');
 
-let middleware: Array<MiddlewareFn> = [];
-
-if (process.env.NODE_ENV !== 'production') {
-  // to use redux-logger only for development
-  const reduxLogger: MiddlewareFn = require('redux-logger').logger;
-  middleware = [...middleware, reduxLogger];
-}
-
-const store = createStore(allReducers, applyMiddleware(...middleware));
-
-const root = document.getElementById('root');
-if (root) {
+if (rootAppNode) {
   ReactDOM.render(
     <Provider store={store}>
       <HashRouter>
         <Switch>
-          <Route exact path="/" />
-          <Route path="/detail/" />
+          <Route exact path="/" component={Overview} />
         </Switch>
       </HashRouter>
     </Provider>,
-    root,
+    rootAppNode,
   );
 }
+// TODO: Error handling (missing 'root' DOM node)

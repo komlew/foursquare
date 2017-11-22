@@ -6,7 +6,6 @@
 .*/dist/.*
 .*/flow-typed/.*
 .*/node_modules/.*
-.*/styles/.*
 
 [libs]
 

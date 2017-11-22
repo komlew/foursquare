@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const common = require('./webpack.common.js');
 
@@ -13,17 +12,6 @@ module.exports = merge(common, {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-    new CopyWebpackPlugin(
-      [
-        {
-          from: 'dist',
-          to: 'docs',
-        },
-      ],
-      {
-        copyUnmodified: true,
-      },
-    ),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         sequences: true,

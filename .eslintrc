@@ -97,6 +97,7 @@
     "flowtype/valid-syntax": 1
   },
   "globals" : {
-    "window": true
+    "window": true,
+    "google": true /* because of added and initialized Google Maps package */
   }
 }
