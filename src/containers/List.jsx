@@ -55,14 +55,20 @@ class List extends Component<Props> {
 
   render() {
     return [
-      <ListHeader location={this.props.location} total={this.props.total} />,
+      <ListHeader
+        key="header"
+        location={this.props.location}
+        total={this.props.total}
+      />,
       <Map
+        key="map"
         venues={this.props.venues}
         center={this.props.center}
         onClick={this.onClick}
         activeID={this.props.activeID}
       />,
       <ListContainer
+        key="list"
         data-empty={this.props.venues.length ? null : 'No results'}
       >
         {Boolean(this.props.venues.length) &&
@@ -75,7 +81,7 @@ class List extends Component<Props> {
             />
           ))}
       </ListContainer>,
-      <ContainerFooter />,
+      <ContainerFooter key="footer" />,
     ];
   }
 }

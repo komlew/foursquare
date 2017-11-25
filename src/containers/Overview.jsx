@@ -53,6 +53,19 @@ class CompactView extends Component<Props> {
   }
 
   @autobind
+  onLocationChange(e: SyntheticInputEvent<HTMLInputElement>) {
+    const { id, value } = e.target;
+    const { ll } = this.props.queryParams;
+    const [lat, lng] = ll.split(',');
+    const coordinates = { lat, lng };
+    coordinates[id] = value;
+    const newLL = Object.values(coordinates).join(',');
+    if (ll !== newLL) {
+      this.props.setNewLocation(newLL);
+    }
+  }
+
+  @autobind
   getUserLocation() {
     // TODO: Disable button and show spinner while location is being requested
     getLocation(ll => this.props.setNewLocation(ll));
@@ -78,6 +91,7 @@ class CompactView extends Component<Props> {
           queryParams={this.props.queryParams}
           getUserLocation={this.getUserLocation}
           reSubmitQuery={this.reSubmitQuery}
+          onLocationChange={this.onLocationChange}
         />
         <List venues={this.props.venues} />
       </MainContainer>

@@ -9,20 +9,23 @@ import {
   Fieldset,
   Button,
   Label,
-  Input,
 } from '../styles/headerElements';
 import type { QueryParams } from '../types';
+
+import InputTuple from './InputTuple';
 
 type Props = {
   queryParams: QueryParams,
   getUserLocation: () => void,
   reSubmitQuery: () => void,
+  onLocationChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
 };
 
 export default ({
   queryParams,
   getUserLocation,
   reSubmitQuery,
+  onLocationChange,
 }: Props): Node => (
   <HeadContainer>
     <Header1>Foursquare API App</Header1>
@@ -33,10 +36,12 @@ export default ({
           {`Request`}
         </Button>
       </Fieldset>
-      <Fieldset>
-        <Label for="ll">Latitude & Longitude</Label>
-        <Input id="ll" readOnly="true" value={queryParams.ll} />
-      </Fieldset>
+      <InputTuple
+        id="lat,lng"
+        name="Latitude,Longitude"
+        value={queryParams.ll}
+        onChange={onLocationChange}
+      />
 
       {/*
       // Additional parameters should be rendered here;
