@@ -133,6 +133,12 @@ export type ActionSetZoom = {
     zoom: number,
   },
 };
+export type ActionSetRadius = {
+  type: 'FORM_UPDATE_RADIUS',
+  payload: {
+    radius: number,
+  },
+};
 export type ActionSetActiveVenue = {
   type: 'VENUE_SET_ACTIVE',
   payload: {
@@ -162,6 +168,7 @@ export type ActionRequestVenuesFailed = {
 
 export type ActionResult =
   | ActionSetZoom
+  | ActionSetRadius
   | ActionRequestVenues
   | ActionSetNewLocation
   | ActionSetActiveVenue

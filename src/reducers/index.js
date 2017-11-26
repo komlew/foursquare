@@ -37,6 +37,11 @@ export default function(
         ...state,
         zoom: action.payload.zoom,
       };
+    case FORM.UPDATE.RADIUS:
+      return {
+        ...state,
+        radius: action.payload.radius,
+      };
     case VENUE.SET_ACTIVE:
       return {
         ...state,

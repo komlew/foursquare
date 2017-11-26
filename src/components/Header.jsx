@@ -9,6 +9,7 @@ import {
   Fieldset,
   Button,
   Label,
+  Input,
 } from '../styles/headerElements';
 import type { QueryParams } from '../types';
 
@@ -19,6 +20,7 @@ type Props = {
   getUserLocation: () => void,
   reSubmitQuery: () => void,
   onLocationChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onRadiusChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
 };
 
 export default ({
@@ -26,6 +28,7 @@ export default ({
   getUserLocation,
   reSubmitQuery,
   onLocationChange,
+  onRadiusChange,
 }: Props): Node => (
   <HeadContainer>
     <Header1>Foursquare API App</Header1>
@@ -42,6 +45,18 @@ export default ({
         value={queryParams.ll}
         onChange={onLocationChange}
       />
+      <Fieldset>
+        <Label for="radiusRequest">Radius (m)</Label>
+        <Input
+          id="radiusRequest"
+          type="number"
+          min="0"
+          max="9999"
+          step="1"
+          value={queryParams.radius}
+          onChange={onRadiusChange}
+        />
+      </Fieldset>
 
       {/*
       // Additional parameters should be rendered here;

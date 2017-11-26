@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
 
 import Header from '../components/Header';
-import { requestVenues, setNewLocation } from '../actions';
+import { requestVenues, setNewLocation, setRadius } from '../actions';
 import { MainContainer, Loading } from '../styles/containers';
 import getLocation from '../helpers/geolocation';
 import formExploreRequest from '../helpers/processing';
@@ -30,6 +30,7 @@ type StateProps = {
 type DispatchProps = {
   requestVenues: (url: string, options: RequestOptions) => void,
   setNewLocation: (id: string) => void,
+  setRadius: (radius: number) => void,
 };
 type OwnProps = {
   venues: Array<APIVenue>,
@@ -45,6 +46,7 @@ const mapStateToProps = (state: DefaultState) => ({
 const mapDispatchToProps = {
   requestVenues,
   setNewLocation,
+  setRadius,
 };
 
 class CompactView extends Component<Props> {
@@ -62,6 +64,15 @@ class CompactView extends Component<Props> {
     const newLL = Object.values(coordinates).join(',');
     if (ll !== newLL) {
       this.props.setNewLocation(newLL);
+    }
+  }
+
+  @autobind
+  onRadiusChange(e: SyntheticInputEvent<HTMLInputElement>) {
+    const { value } = e.target;
+    const radius = parseInt(value, 10);
+    if (Number.isFinite(radius) && radius !== this.props.queryParams.radius) {
+      this.props.setRadius(radius);
     }
   }
 
@@ -92,6 +103,7 @@ class CompactView extends Component<Props> {
           getUserLocation={this.getUserLocation}
           reSubmitQuery={this.reSubmitQuery}
           onLocationChange={this.onLocationChange}
+          onRadiusChange={this.onRadiusChange}
         />
         <List venues={this.props.venues} />
       </MainContainer>

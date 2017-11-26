@@ -15,11 +15,11 @@ export const MAPS_API = {
   },
 };
 
-export const AMSTERDAM_LATITUDE_LONGITUDE = '52.3742065,4.9020282';
+export const AMSTERDAM_LATITUDE_LONGITUDE = '52.376501,4.905895';
 export const AMSTERDAM_ALTITUDE = -2; // API requires altitude in meters
-export const AMSTERDAM_RADIUS = 4500; // API requires radius in meters
+export const AMSTERDAM_RADIUS = 500; // API requires radius in meters
 
-export const DEFAULT_MAP_ZOOM = 12;
+export const DEFAULT_MAP_ZOOM = 15;
 export const DEFAULT_SECTION = 'food';
 export const DEFAULT_QUERY = '';
 export const DEFAULT_LIMIT = 20; // max 50
@@ -42,6 +42,7 @@ export const FORM = {
   UPDATE: {
     LOCATION: 'FORM_UPDATE_LOCATION',
     ZOOM: 'FORM_UPDATE_ZOOM',
+    RADIUS: 'FORM_UPDATE_RADIUS',
   },
 };
 

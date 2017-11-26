@@ -27,6 +27,13 @@ export const setZoom = (zoom: number): ActionResult => ({
   },
 });
 
+export const setRadius = (radius: number): ActionResult => ({
+  type: FORM.UPDATE.RADIUS,
+  payload: {
+    radius,
+  },
+});
+
 export const setActiveVenue = (id: string): ActionResult => ({
   type: VENUE.SET_ACTIVE,
   payload: {
