@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 
-import createStore from './helpers/store';
+import createStore from './reducers/store';
 import Overview from './containers/Overview';
 
 const store = createStore();

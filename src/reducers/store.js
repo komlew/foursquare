@@ -1,12 +1,16 @@
 // @flow
 import createSagaMiddleware from 'redux-saga';
 import { createStore, applyMiddleware } from 'redux';
-import type { Middleware } from 'redux';
+import type { Store, Reducer, StoreEnhancer, Middleware } from 'redux';
 
 import sagas from '../sagas';
 import reducers from '../reducers';
 
 type MiddlewareFn = Middleware<*, *>;
+type CreateStore<S, A, D> = (
+  reducer: Reducer<S, A>,
+  enhancer?: StoreEnhancer<S, A, D>,
+) => Store<S, A, D>;
 
 export default () => {
   // Using saga middleware to handle async events and side effects
@@ -20,7 +24,10 @@ export default () => {
   }
 
   // flow-disable-next-line
-  const store = createStore(reducers, applyMiddleware(...middleware));
+  const store: (CreateStore<S, A, D>) => Store<S, A, D> = createStore(
+    reducers,
+    applyMiddleware(...middleware),
+  );
   sagaMiddleware.run(sagas);
 
   return store;
