@@ -3,6 +3,7 @@ import type { DefaultState } from '../types';
 
 // Returns the main app data
 export const selectorVenues = (state: DefaultState) => state.venues;
+export const selectorZoom = (state: DefaultState) => state.zoom;
 
 // Return filters used in the interface and in data request query
 export const selectorLL = (state: DefaultState) => state.ll;

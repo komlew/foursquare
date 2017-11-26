@@ -6,11 +6,12 @@ import autobind from 'autobind-decorator';
 import Map from '../components/Map';
 import VenueCard from '../components/VenueCard';
 import ListHeader from '../components/ListHeader';
-import { setActiveVenue, setNewLocation } from '../actions';
+import { setActiveVenue, setNewLocation, setZoom } from '../actions';
 import { ListContainer, ContainerFooter } from '../styles/containers';
 import { scrollToActive } from '../helpers/elementManipulations';
 import {
   selectorTotal,
+  selectorZoom,
   selectorLL,
   selectorActiveID,
   selectorLocation,
@@ -18,6 +19,7 @@ import {
 import type { DefaultState, APIVenue } from '../types';
 
 type StateProps = {
+  zoom: number,
   total: number,
   center: string,
   activeID: string,
@@ -26,6 +28,7 @@ type StateProps = {
 type DispatchProps = {
   setActiveVenue: (id: string) => void,
   setNewLocation: (id: string) => void,
+  setZoom: (zoom: number) => void,
 };
 type OwnProps = {
   venues: Array<APIVenue>,
@@ -33,6 +36,7 @@ type OwnProps = {
 type Props = StateProps & DispatchProps & OwnProps;
 
 const mapStateToProps = (state: DefaultState): StateProps => ({
+  zoom: selectorZoom(state),
   total: selectorTotal(state),
   center: selectorLL(state),
   activeID: selectorActiveID(state),
@@ -42,6 +46,7 @@ const mapStateToProps = (state: DefaultState): StateProps => ({
 const mapDispatchToProps = {
   setActiveVenue,
   setNewLocation,
+  setZoom,
 };
 
 class List extends Component<Props> {
@@ -64,10 +69,12 @@ class List extends Component<Props> {
       />,
       <Map
         key="map"
+        zoom={this.props.zoom}
         venues={this.props.venues}
         center={this.props.center}
         onClick={this.onClick}
         onCenterChanged={this.props.setNewLocation}
+        onZoomChanged={this.props.setZoom}
         activeID={this.props.activeID}
       />,
       <ListContainer

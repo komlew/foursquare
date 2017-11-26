@@ -72,6 +72,7 @@ export type APIVenue = {
 };
 
 export type NonQueryState = {
+  zoom: number,
   venues: Array<?APIVenue>,
   activeID: string,
   location: string,
@@ -81,19 +82,31 @@ export type NonQueryState = {
 
 export type DefaultState = NonQueryState & QueryParams;
 
+export type Map = {
+  getCenter: () => {
+    lat: () => number,
+    lng: () => number,
+  },
+  getZoom: () => number,
+};
+
 export type MapProps = {
+  zoom: number,
   venues: Array<Venue>,
   center: string,
   activeID: string,
   onClick: (id: string, shouldScroll: boolean) => void,
   onCenterChanged: (ll: string) => void,
+  onZoomChanged: (zoom: number) => void,
 };
 export type MapAPIProps = {
+  zoom: number,
   venues: Array<APIVenue>,
   center: string,
   activeID: string,
   onClick: (id: string, shouldScroll: boolean) => void,
   onCenterChanged: (ll: string) => void,
+  onZoomChanged: (zoom: number) => void,
 };
 export type CardProps = {
   venue: APIVenue,
@@ -112,6 +125,12 @@ export type ActionSetNewLocation = {
   type: 'FORM_UPDATE_LOCATION',
   payload: {
     ll: string,
+  },
+};
+export type ActionSetZoom = {
+  type: 'FORM_UPDATE_ZOOM',
+  payload: {
+    zoom: number,
   },
 };
 export type ActionSetActiveVenue = {
@@ -142,6 +161,7 @@ export type ActionRequestVenuesFailed = {
 };
 
 export type ActionResult =
+  | ActionSetZoom
   | ActionRequestVenues
   | ActionSetNewLocation
   | ActionSetActiveVenue

@@ -8,30 +8,41 @@ import {
 } from 'react-google-maps';
 import type { Node } from 'react';
 
-import { DEFAULT_MAP_ZOOM } from '../constants';
-import type { MapProps } from '../types';
+import type { Map, MapProps } from '../types';
 
 declare var google: { maps: { Animation: { BOUNCE: string } } };
 
 const mapCenter = (() => {
-  let mapRef;
-  let dispatch;
+  let mapRef: ?Map;
+  let dispatchLocation;
+  let dispatchZoom;
   return {
     setRef: ref => {
       mapRef = ref;
     },
-    setCallback: callback => {
-      dispatch = callback;
+    setCallbacks: (callbackLocation, callbackZoom) => {
+      dispatchLocation = callbackLocation;
+      dispatchZoom = callbackZoom;
     },
     setCenter: () => {
       if (
         mapRef &&
         typeof mapRef.getCenter === 'function' &&
-        typeof dispatch === 'function'
+        typeof dispatchLocation === 'function'
       ) {
         const center = mapRef.getCenter();
         const ll = [center.lat(), center.lng()].join(',');
-        dispatch(ll);
+        dispatchLocation(ll);
+      }
+    },
+    setZoom: () => {
+      if (
+        mapRef &&
+        typeof mapRef.getZoom === 'function' &&
+        typeof dispatchZoom === 'function'
+      ) {
+        const zoom = mapRef.getZoom();
+        dispatchZoom(zoom);
       }
     },
   };
@@ -39,13 +50,22 @@ const mapCenter = (() => {
 
 export default withScriptjs(
   withGoogleMap(
-    ({ venues, center, activeID, onClick, onCenterChanged }: MapProps): Node =>
-      mapCenter.setCallback(onCenterChanged) || (
+    ({
+      zoom,
+      venues,
+      center,
+      activeID,
+      onClick,
+      onCenterChanged,
+      onZoomChanged,
+    }: MapProps): Node =>
+      mapCenter.setCallbacks(onCenterChanged, onZoomChanged) || (
         <GoogleMap
-          defaultZoom={DEFAULT_MAP_ZOOM}
+          defaultZoom={zoom}
           defaultCenter={center}
           ref={ref => mapCenter.setRef(ref)}
           onCenterChanged={mapCenter.setCenter}
+          onZoomChanged={mapCenter.setZoom}
         >
           {venues &&
             venues.map(venue => {

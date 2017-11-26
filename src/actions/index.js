@@ -20,6 +20,13 @@ export const setNewLocation = (ll: string): ActionResult => ({
   },
 });
 
+export const setZoom = (zoom: number): ActionResult => ({
+  type: FORM.UPDATE.ZOOM,
+  payload: {
+    zoom,
+  },
+});
+
 export const setActiveVenue = (id: string): ActionResult => ({
   type: VENUE.SET_ACTIVE,
   payload: {

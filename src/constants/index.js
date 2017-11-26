@@ -41,6 +41,7 @@ export const REQUEST = {
 export const FORM = {
   UPDATE: {
     LOCATION: 'FORM_UPDATE_LOCATION',
+    ZOOM: 'FORM_UPDATE_ZOOM',
   },
 };
 

@@ -9,11 +9,13 @@ import type { MapAPIProps } from '../types';
 import GoogleMap from './GoogleMap';
 
 export default ({
+  zoom,
   venues,
   center,
   activeID,
   onClick,
   onCenterChanged,
+  onZoomChanged,
 }: MapAPIProps): Node => {
   const venuesObject = venues.map(venue => ({
     lat: venue.location.lat,
@@ -32,10 +34,12 @@ export default ({
       containerElement={<MapContainer />}
       loadingElement={<div style={{ height: `100%` }} />}
       mapElement={<div style={{ height: `100%` }} />}
+      zoom={zoom}
       venues={venuesObject}
       center={centerObject}
       onClick={onClick}
       onCenterChanged={onCenterChanged}
+      onZoomChanged={onZoomChanged}
       activeID={activeID}
     />
   );

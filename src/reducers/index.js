@@ -6,6 +6,7 @@ import {
   AMSTERDAM_LATITUDE_LONGITUDE,
   AMSTERDAM_ALTITUDE,
   AMSTERDAM_RADIUS,
+  DEFAULT_MAP_ZOOM,
   DEFAULT_SECTION,
   DEFAULT_QUERY,
   DEFAULT_LIMIT,
@@ -21,6 +22,7 @@ import type { DefaultState, ActionResult } from '../types';
 const defaultState = {
   venues: [],
   activeID: '',
+  zoom: DEFAULT_MAP_ZOOM,
   ll: AMSTERDAM_LATITUDE_LONGITUDE,
   alt: AMSTERDAM_ALTITUDE,
   radius: AMSTERDAM_RADIUS,
@@ -64,6 +66,11 @@ export default function(
       return {
         ...state,
         ll: action.payload.ll,
+      };
+    case FORM.UPDATE.ZOOM:
+      return {
+        ...state,
+        zoom: action.payload.zoom,
       };
     case VENUE.SET_ACTIVE:
       return {
