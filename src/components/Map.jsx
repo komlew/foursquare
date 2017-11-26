@@ -8,7 +8,13 @@ import type { MapAPIProps } from '../types';
 
 import GoogleMap from './GoogleMap';
 
-export default ({ venues, center, activeID, onClick }: MapAPIProps): Node => {
+export default ({
+  venues,
+  center,
+  activeID,
+  onClick,
+  onCenterChanged,
+}: MapAPIProps): Node => {
   const venuesObject = venues.map(venue => ({
     lat: venue.location.lat,
     lng: venue.location.lng,
@@ -29,6 +35,7 @@ export default ({ venues, center, activeID, onClick }: MapAPIProps): Node => {
       venues={venuesObject}
       center={centerObject}
       onClick={onClick}
+      onCenterChanged={onCenterChanged}
       activeID={activeID}
     />
   );

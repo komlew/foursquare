@@ -86,12 +86,14 @@ export type MapProps = {
   center: string,
   activeID: string,
   onClick: (id: string, shouldScroll: boolean) => void,
+  onCenterChanged: (ll: string) => void,
 };
 export type MapAPIProps = {
   venues: Array<APIVenue>,
   center: string,
   activeID: string,
   onClick: (id: string, shouldScroll: boolean) => void,
+  onCenterChanged: (ll: string) => void,
 };
 export type CardProps = {
   venue: APIVenue,

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js -p",
-    "eslint": "./node_modules/eslint/bin/eslint.js src/**/*.{js,jsx} --fix",
+    "eslint": "./node_modules/eslint/bin/eslint.js *.{js,jsx} --fix",
     "flow": "flow",
     "flow-report": "flow-coverage-report -i 'src/**/*.js' -i 'src/**/*.jsx' -x 'src/test/**'",
     "flow-typed": "flow-typed install",

@@ -6,7 +6,7 @@ import autobind from 'autobind-decorator';
 import Map from '../components/Map';
 import VenueCard from '../components/VenueCard';
 import ListHeader from '../components/ListHeader';
-import { setActiveVenue } from '../actions';
+import { setActiveVenue, setNewLocation } from '../actions';
 import { ListContainer, ContainerFooter } from '../styles/containers';
 import { scrollToActive } from '../helpers/elementManipulations';
 import {
@@ -25,6 +25,7 @@ type StateProps = {
 };
 type DispatchProps = {
   setActiveVenue: (id: string) => void,
+  setNewLocation: (id: string) => void,
 };
 type OwnProps = {
   venues: Array<APIVenue>,
@@ -40,6 +41,7 @@ const mapStateToProps = (state: DefaultState): StateProps => ({
 
 const mapDispatchToProps = {
   setActiveVenue,
+  setNewLocation,
 };
 
 class List extends Component<Props> {
@@ -65,6 +67,7 @@ class List extends Component<Props> {
         venues={this.props.venues}
         center={this.props.center}
         onClick={this.onClick}
+        onCenterChanged={this.props.setNewLocation}
         activeID={this.props.activeID}
       />,
       <ListContainer
