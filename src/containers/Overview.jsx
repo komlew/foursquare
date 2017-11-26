@@ -93,9 +93,6 @@ class CompactView extends Component<Props> {
   }
 
   render() {
-    if (this.props.loading) {
-      return <Loading>Fetching data...</Loading>;
-    }
     return (
       <MainContainer>
         <Header
@@ -105,7 +102,11 @@ class CompactView extends Component<Props> {
           onLocationChange={this.onLocationChange}
           onRadiusChange={this.onRadiusChange}
         />
-        <List venues={this.props.venues} />
+        {this.props.loading ? (
+          <Loading>Fetching data...</Loading>
+        ) : (
+          <List venues={this.props.venues} />
+        )}
       </MainContainer>
     );
   }
